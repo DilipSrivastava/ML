@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GPT-5 Chat & Content Generator</title>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<style>
+/* General body styling */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #eef2f7;
+    color: #333;
+}
+
+/* Header */
+header {
+    background-color: #007bff;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    font-size: 1.8em;
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+/* Container */
+.container {
+    max-width: 900px;
+    margin: 30px auto;
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+/* Textarea */
+textarea {
+    width: 100%;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    margin-bottom: 15px;
+    font-size: 1em;
+    resize: vertical;
+}
+
+/* Buttons */
+button {
+    padding: 12px 25px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 8px;
+    background: #007bff;
+    color: #fff;
+    font-size: 1em;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #0056b3;
+}
+
+button:disabled {
+    background: #aaa;
+    cursor: not-allowed;
+}
+
+/* Answer box */
+#answer {
+    margin-top: 25px;
+    white-space: pre-wrap;
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    border-left: 4px solid #007bff;
+    min-height: 80px;
+}
+
+/* Footer */
+footer {
+    background-color: #007bff;
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    font-size: 0.95em;
+}
+</style>
+</head>
+<body>
+
+<header>
+    GPT-5 Chat & Content Generator
+</header>
+
+<div class="container">
+    <textarea id="question" rows="5" placeholder="Enter your prompt or question..."></textarea>
+
+    <div>
+        <button id="generateBtn">Generate</button>
+        <button id="downloadBtn" disabled>Download as Word</button>
+        <button id="downloadPdfBtn" disabled>Download as PDF</button>
+    </div>
+
+    <div id="answer"></div>
+</div>
+
+<footer>
+    &copy; 2025 GPT-5 Chat & Content Generator. All rights reserved.
+</footer>
+
+<script>
+let latestContent = "";
+
+$("#generateBtn").click(function(){
+    const question = $("#question").val();
+    if(!question) return alert("Enter a prompt!");
+
+    $("#answer").text("Generating response, please wait...");
+
+    $.post("/ask", {question: question}, function(data){
+        if(data.answer){
+            latestContent = data.answer;
+            $("#answer").text(data.answer);
+
+            // ENABLE both Word and PDF buttons
+            $("#downloadBtn").prop("disabled", false);
+            $("#downloadPdfBtn").prop("disabled", false);
+        } else if(data.error){
+            $("#answer").text("Error: " + data.error);
+
+            $("#downloadBtn").prop("disabled", true);
+            $("#downloadPdfBtn").prop("disabled", true);
+        }
+    }).fail(function(xhr, status, error){
+        $("#answer").text("Request failed: " + error);
+
+        $("#downloadBtn").prop("disabled", true);
+        $("#downloadPdfBtn").prop("disabled", true);
+    });
+});
+
+$("#downloadPdfBtn").click(function(){
+    if(!latestContent) return alert("No content to download");
+
+    const form = $('<form method="POST" action="/download-pdf"></form>');
+    form.append('<input type="hidden" name="content" value="'+latestContent+'">');
+    $('body').append(form);
+    form.submit();
+    form.remove();
+});
+
+$("#downloadBtn").click(function(){
+    if(!latestContent) return alert("No content to download");
+
+    const form = $('<form method="POST" action="/download-doc"></form>');
+    form.append('<input type="hidden" name="content" value="'+latestContent+'">');
+    $('body').append(form);
+    form.submit();
+    form.remove();
+});
+</script>
+
+</body>
+</html>

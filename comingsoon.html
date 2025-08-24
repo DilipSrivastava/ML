@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coming Soon</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+    body {
+        margin: 0;
+        font-family: 'Poppins', sans-serif;
+        background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+        color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        text-align: center;
+    }
+
+    .container {
+        max-width: 600px;
+        padding: 40px;
+        background: rgba(0, 0, 0, 0.5);
+        border-radius: 20px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        animation: fadeIn 1s ease-in-out;
+    }
+
+    h1 {
+        font-size: 48px;
+        margin-bottom: 20px;
+    }
+
+    p {
+        font-size: 20px;
+        margin-bottom: 30px;
+    }
+
+    button {
+        padding: 12px 25px;
+        font-size: 16px;
+        font-weight: 600;
+        border: none;
+        border-radius: 10px;
+        background: #ff7e5f;
+        color: #fff;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    button:hover {
+        background: #eb6750;
+        transform: scale(1.05);
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(-20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Coming Soon!</h1>
+    <p>We are working hard to bring you this feature. Stay tuned!</p>
+    <button onclick="window.location.href='/'">Back to Landing Page</button>
+</div>
+
+</body>
+</html>

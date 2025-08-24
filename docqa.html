@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document Q&amp;A</title>
+<style>
+    body { font-family: Arial, sans-serif; background:#f0f2f5; margin:0; padding:0; display:flex; flex-direction:column; align-items:center; }
+    header { background:#007bff; color:#fff; width:100%; text-align:center; padding:20px; font-size:28px; }
+    main { max-width:600px; width:100%; margin:40px 0; background:#fff; padding:20px; border-radius:10px; box-shadow:0 4px 10px rgba(0,0,0,0.1); }
+    input, textarea { width:100%; padding:10px; margin:10px 0; border-radius:8px; border:1px solid #ccc; font-size:16px; }
+    button { padding:10px 20px; border:none; border-radius:8px; background:#28a745; color:#fff; cursor:pointer; font-size:16px; }
+    button:hover { background:#218838; }
+    #response { margin-top:20px; background:#e9ecef; padding:15px; border-radius:8px; min-height:50px; white-space:pre-wrap; }
+</style>
+</head>
+<body>
+
+<header>Document Q&amp;A</header>
+
+<main>
+    <input type="file" id="file" accept=".pdf,.docx" />
+    <textarea id="question" rows="3" placeholder="Ask a question about the uploaded document"></textarea>
+    <button id="askBtn">Ask AI</button>
+    <div id="response">Answer will appear here...</div>
+</main>
+
+<script>
+document.getElementById('askBtn').addEventListener('click', async () => {
+    const fileInput = document.getElementById('file');
+    const question = document.getElementById('question').value.trim();
+    const responseDiv = document.getElementById('response');
+
+    if (!fileInput.files.length) { alert("Please upload a file"); return; }
+    if (!question) { alert("Please enter a question"); return; }
+
+    const formData = new FormData();
+    formData.append('file', fileInput.files[0]);
+    formData.append('question', question);
+
+    responseDiv.textContent = "Loading...";
+
+    try {
+        const res = await fetch('/ask-doc', {
+            method: 'POST',
+            body: formData
+        });
+        const data = await res.json();
+        responseDiv.textContent = data.answer || data.error || "No response";
+    } catch (err) {
+        responseDiv.textContent = "Network error: " + err.message;
+    }
+});
+</script>
+
+</body>
+</html>

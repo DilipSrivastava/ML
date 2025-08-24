@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dilip's AI Tools</title>
+<style>
+    body {
+        margin: 0;
+        font-family: 'Segoe UI', Arial, sans-serif;
+        background: #f4f6f8;
+        color: #333;
+    }
+
+    header {
+        background: #53bda7;
+        color: #fff;
+        padding: 20px;
+        text-align: center;
+        font-size: 32px;
+        font-weight: bold;
+    }
+    footer {
+        background: #53bda7;
+        color: #fff;
+        padding: 20px;
+        text-align: center;
+        font-size: 32px;
+        font-weight: bold;
+    }
+
+    main {
+        max-width: 1200px;
+        margin: 40px auto;
+        padding: 0 20px;
+    }
+
+    .cards-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .card {
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        width: 280px;
+        padding: 20px;
+        text-align: center;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+
+    .card h2 {
+        margin: 10px 0;
+        font-size: 24px;
+        color: #007bff;
+    }
+
+    .card p {
+        font-size: 16px;
+        color: #555;
+        margin: 8px 0;
+    }
+
+    .card button {
+        margin-top: 15px;
+        padding: 10px 20px;
+        font-size: 16px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background 0.2s ease;
+    }
+
+    .try-btn {
+        background: #28a745;
+        color: #fff;
+        margin-right: 10px;
+    }
+
+    .try-btn:hover {
+        background: #218838;
+    }
+
+    .buy-btn {
+        background: #ffc107;
+        color: #333;
+    }
+
+    .buy-btn:hover {
+        background: #e0a800;
+    }
+
+    @media (max-width: 1000px) {
+        .cards-container {
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+</style>
+</head>
+<body>
+
+<header>Welcome To Dilip's AI Tools</header><br><br>
+
+<main>
+    <div class="cards-container">
+        <!-- Chatbot Card -->
+        <div class="card">
+            <h2>Custome Chatbot</h2>
+            <p>Ask Your Query</p>
+            <p>Get instant replies for your queries.</p>
+            <button class="try-btn" onclick="window.location.href='/chatbot'">Try Free</button>
+            <button class="buy-btn" onclick="window.location.href='/comingsoon'">Buy Now</button>
+        </div>
+        <!-- Document Q&A Card -->
+        <div class="card">
+            <h2>Document Based Q&amp;A</h2>
+            <p>Ask questions based on uploaded documents.</p>
+            <!--<p>Extract answers from PDFs and text files.</p>-->
+            <!--<p>Easy integration with your data.</p>-->
+            <button class="try-btn" onclick="window.location.href='/docqa'">Try Free</button>
+            <button class="buy-btn" onclick="window.location.href='/comingsoon'">Buy Now</button>
+        </div>
+        <!-- Image Classification Card -->
+        <!--<div class="card">-->
+        <!--    <h2>Image Classification</h2>-->
+        <!--    <p>Upload images and get automatic categorization.</p>-->
+            <!--<p>Uses AI vision models for high accuracy.</p>-->
+            <!--<p>Perfect for analysis and tagging tasks.</p>-->
+        <!--    <button class="try-btn" onclick="window.location.href='/comingsoon'">Try Free</button>-->
+        <!--    <button class="buy-btn" onclick="window.location.href='/comingsoon'">Buy Now</button>-->
+        <!--</div>-->
+    </div><br><br>
+    <div class="cards-container">
+        <!-- Chatbot Card -->
+        <!--<div class="card">-->
+        <!--    <h2>Create Content</h2>-->
+        <!--    <p>Create Content and Download</p>-->
+        <!--    <p>Get instant replies for your queries.</p>-->
+        <!--    <button class="try-btn" onclick="window.location.href='/comingsoon'">Try Free</button>-->
+        <!--    <button class="buy-btn" onclick="window.location.href='/comingsoon'">Buy Now</button>-->
+        <!--</div>-->
+            
+
+        <!-- Image Classification Card -->
+        <!--<div class="card">-->
+        <!--    <h2>HD Image Creating</h2>-->
+        <!--    <p>Give the details about Image</p>-->
+            <!--<p>Uses AI vision models for high accuracy.</p>-->
+            <!--<p>Perfect for analysis and tagging tasks.</p>-->
+        <!--    <button class="try-btn" onclick="alert('Coming soon')">Try Free</button>-->
+        <!--    <button class="buy-btn" onclick="window.location.href='/comingsoon'">Buy Now</button>-->
+        <!--</div>-->
+
+        <!-- Document Q&A Card -->
+        <!--<div class="card">-->
+        <!--    <h2>Link Building</h2>-->
+        <!--    <p>AI-Agent Will build the links for you</p>-->
+            <!--<p>Extract answers from PDFs and text files.</p>-->
+            <!--<p>Easy integration with your data.</p>-->
+        <!--    <button class="try-btn" onclick="window.location.href='/comingsoon'">Try Free</button>-->
+        <!--    <button class="buy-btn" onclick="window.location.href='/comingsoon'">Buy Now</button>-->
+        <!--</div>-->
+    </div>
+</main><br><br>
+
+<footer>©2025 <a href="/">dilip.tools</a>. All rights reserved.</footer>
+</body>
+</html>
